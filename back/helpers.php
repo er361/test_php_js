@@ -9,7 +9,7 @@ function countWords(string $text): array
     $wordCounts = array_filter($wordCounts, function ($count) {
         return $count > 1;
     });
-
+    asort($wordCounts);
     return $wordCounts;
 }
 
@@ -23,7 +23,7 @@ function filterInputData(string $text)
     if (empty($text)) {
         return $text;
     }
-    
+
     $text = trim($text);
     $text = htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     return $text;
