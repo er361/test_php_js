@@ -9,7 +9,7 @@ function countWords(string $text): array
     $wordCounts = array_filter($wordCounts, function ($count) {
         return $count > 1;
     });
-    asort($wordCounts);
+    rsort($wordCounts);
     return $wordCounts;
 }
 
