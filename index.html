@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Counter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        #result {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="result"></div>
+    <div id="error" style="color: indianred"></div>
+    <form id="wordCounterForm">
+        <textarea required id="inputText" rows="5" cols="40" placeholder="Введите текст..."></textarea><br>
+        <button type="submit">Посчитать слова</button>
+    </form>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
