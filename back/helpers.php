@@ -1,26 +1,30 @@
 <?php
-function countWords(string $text):array
+
+function countWords(string $text): array
 {
     $text = preg_replace('/[^\p{L}\p{N}\s]/u', '', trim($text));
-
-    // Разбиваем текст на отдельные слова
     $words = preg_split('/\s+/', $text);
 
-    $wordCounts = array();
-
-    // Перебираем все слова и увеличиваем счетчик каждого слова в массиве
-    foreach ($words as $word) {
-        if (isset($wordCounts[$word])) {
-            $wordCounts[$word]++;
-        } else {
-            $wordCounts[$word] = 1;
-        }
-    }
-
-    foreach ($wordCounts as $word => $count) {
-        if($count == 1)
-            unset($wordCounts[$word]);
-    }
+    $wordCounts = array_count_values($words);
+    $wordCounts = array_filter($wordCounts, function ($count) {
+        return $count > 1;
+    });
 
     return $wordCounts;
+}
+
+
+/**
+ * @param string $text
+ * @return false|string
+ */
+function filterInputData(string $text)
+{
+    if (empty($text)) {
+        return $text;
+    }
+    
+    $text = trim($text);
+    $text = htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    return $text;
 }

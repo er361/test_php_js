@@ -14,16 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Распаковываем входной JSON-объект
-    $inputData = json_decode($text);
-
-    // Очищаем каждое свойство входного объекта от нежелательных символов
-    foreach ($inputData as $key => $value) {
-        $inputData->{$key} = filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
-    }
-
-    // Преобразуем объект обратно в JSON
-    $text = json_encode($inputData);
+    $text = filterInputData($text);
 
     $countWords = countWords($text);
     if(!count($countWords)){
